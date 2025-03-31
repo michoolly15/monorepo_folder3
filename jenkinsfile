@@ -9,7 +9,8 @@ pipeline {
                 echo 'Building an angular app is ongoing...'
                 sh 'cd angular-app && npm install && npm run build'
             }
-        } stage('Build React App') {
+        }
+        stage('Build React App') {
             when {
                 changeset '**/react-app/**' // Build an react app
             }
@@ -17,7 +18,8 @@ pipeline {
                 echo 'Building an react app is ongoing...'
                 sh 'cd react-app && npm install && npm run build'
             }
-        } stage('Build Vue App') {
+        }
+        stage('Build Vue App') {
             when {
                 changeset '**/vue-app/**' // Build a vue app
             }
@@ -25,6 +27,11 @@ pipeline {
                 echo 'Building an vue app is ongoing...'
                 sh 'cd vue-app && npm install && npm run build'
             }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline completed'
         }
     }
 }
