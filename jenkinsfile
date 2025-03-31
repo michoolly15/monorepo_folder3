@@ -18,6 +18,9 @@ pipeline {
                 echo 'Building an react app is ongoing...'
                 sh 'cd react-app && npm install && npm run build'
             }
+            script {
+                echo "console.log('New Feature');" >> react - app / src / index.js
+            }
         }
         stage('Build Vue App') {
             when {
