@@ -10,6 +10,15 @@ pipeline {
                 sh 'cd angular-app && npm install && npm run build'
             }
         }
+        stage('Modify React App') {
+            steps {
+                script {
+                    sh '''
+                    echo "console.log('Updated via Jenkins');" >> react-app/src/index.js
+                    '''
+                }
+            }
+        }
         stage('Build React App') {
             when {
                 changeset '**/react-app/**' // Build an react app
@@ -17,9 +26,6 @@ pipeline {
             steps {
                 echo 'Building an react app is ongoing...'
                 sh 'cd react-app && npm install && npm run build'
-            }
-            steps {
-                echo "console.log('New Feature');" >> react - app / src / index.js
             }
         }
         stage('Build Vue App') {
